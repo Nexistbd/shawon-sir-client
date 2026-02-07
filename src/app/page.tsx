@@ -1,12 +1,25 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
+import {
+  HeroSection,
+  BenefitsSection,
+  TrendingClassesSection,
+  TrendingCoursesSection,
+  QuickExamSection,
+  InstructorsSection,
+  BooksSection,
+  TestimonialsSection,
+} from "@/components/sections";
 
-const HomePage = () => {
+export default function Home() {
   return (
-    <div className=" h-screen flex justify-center items-center">
-      <Button> Click Me </Button>
-    </div>
+    <main className="w-full">
+      <HeroSection />
+      <BenefitsSection />
+      <TrendingClassesSection />
+      <TrendingCoursesSection />
+      <QuickExamSection />
+      <InstructorsSection />
+      <BooksSection />
+      <TestimonialsSection />
+    </main>
   );
-};
-
-export default HomePage;
+}
