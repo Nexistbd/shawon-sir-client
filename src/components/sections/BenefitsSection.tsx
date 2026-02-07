@@ -1,15 +1,18 @@
 "use client";
 
+import assets from "@/assets";
+import Image from "next/image";
+
 export const BenefitsSection = () => {
   return (
-    <section className="bg-white border-t border-b border-[#e3e3e3] py-16">
+    <section className="bg-[#f2f2f2] border-t border-b border-[#e3e3e3] py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Benefit 1 */}
           <div className="flex gap-4">
             <div className="flex-shrink-0">
               <div className="flex items-center justify-center h-20 w-20 rounded-full bg-[#288b6a]">
-                <span className="text-white text-2xl">📚</span>
+                <Image src={assets.icons.pc} alt="pc" />
               </div>
             </div>
             <div>
@@ -26,7 +29,7 @@ export const BenefitsSection = () => {
           <div className="flex gap-4">
             <div className="flex-shrink-0">
               <div className="flex items-center justify-center h-20 w-20 rounded-full bg-[#288b6a]">
-                <span className="text-white text-2xl">👨‍🏫</span>
+                <Image src={assets.icons.man} alt="man" />
               </div>
             </div>
             <div>
@@ -43,7 +46,7 @@ export const BenefitsSection = () => {
           <div className="flex gap-4">
             <div className="flex-shrink-0">
               <div className="flex items-center justify-center h-20 w-20 rounded-full bg-[#288b6a]">
-                <span className="text-white text-2xl">📱</span>
+                <Image src={assets.icons.file} alt="file" />
               </div>
             </div>
             <div>

@@ -3,12 +3,13 @@
 import assets from "@/assets";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import heroImage from "@/assets/heroImage.png";
 
 // Assets
 
 export const HeroSection = () => {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -56,12 +57,13 @@ export const HeroSection = () => {
           {/* Right Image */}
           <div className="relative">
             <Image
-              src={assets.images.hero}
+              src={heroImage}
               alt="Hero"
               className="w-full rounded-lg"
               width={630}
               height={650}
             />
+
             {/* Stats Cards */}
             <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-8 left-8 bg-white rounded-lg p-4 shadow-lg">
               <div className="text-2xl font-bold text-[#00170f]">১০০%</div>
