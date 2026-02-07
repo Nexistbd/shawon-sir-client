@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ClassCard from "./ClassCard";
 
 // Assets
 const imgImageClass =
@@ -14,36 +15,7 @@ const imgIcon =
 const imgIcon1 =
   "https://www.figma.com/api/mcp/asset/80632ca7-16b0-4161-bd59-a16e289f688c";
 
-interface ClassCardProps {
-  image: string;
-  duration: string;
-  title: string;
-  icon: string;
-}
 
-const ClassCard: React.FC<ClassCardProps> = ({
-  image,
-  duration,
-  title,
-  icon,
-}) => (
-  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-    <div className="relative h-64 bg-gradient-to-b from-transparent to-black/30">
-      <img src={image} alt={title} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-white/20 backdrop-blur rounded-full w-16 h-16 flex items-center justify-center">
-          <img src={icon} alt="play" className="w-6 h-6" />
-        </div>
-      </div>
-    </div>
-    <div className="bg-gradient-to-t from-black/80 to-transparent p-6 absolute bottom-0 w-full">
-      <div className="bg-[#ff7f50] text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">
-        {duration}
-      </div>
-      <h3 className="text-white text-lg font-bold">{title}</h3>
-    </div>
-  </div>
-);
 
 export const TrendingClassesSection = () => {
   return (
@@ -51,10 +23,10 @@ export const TrendingClassesSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-[#07a169] text-sm font-['Kalpurush'] uppercase mb-4">
+          <p className="text-[#07a169] text-sm uppercase mb-4">
             ট্রেন্ডিং ক্লাস
           </p>
-          <h2 className="text-4xl lg:text-5xl font-['Kalpurush'] font-bold text-[#00170f] relative inline-block">
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#00170f] relative inline-block">
             ফ্রি ক্লাস
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
               <img src={imgVector} alt="" className="h-4" />

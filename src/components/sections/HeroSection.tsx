@@ -22,7 +22,7 @@ export const HeroSection = () => {
             <div className="space-y-4">
               <h1 className="text-[#00170f] text-5xl lg:text-6xl font-['Kalpurush'] font-bold">
                 সাফল্যের{" "}
-                <span className="bg-gradient-to-r from-[#e64460] to-[#f9d252] bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-[#e64460] to-[#f9d252] bg-clip-text text-transparent">
                   নিশ্চয়তায়
                 </span>
                 <br />
