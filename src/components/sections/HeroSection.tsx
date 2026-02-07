@@ -1,18 +1,10 @@
 "use client";
 
+import assets from "@/assets";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 // Assets
-const imgShape =
-  "https://www.figma.com/api/mcp/asset/07880b34-29ab-4154-81f8-bcef89d8f471";
-const imgImage =
-  "https://www.figma.com/api/mcp/asset/851ea909-5db5-4cb0-8531-04b4ee3f3587";
-const imgIcon =
-  "https://www.figma.com/api/mcp/asset/8e76ec38-06ff-4990-b065-ef2d0168e20c";
-const imgRectangle16 =
-  "https://www.figma.com/api/mcp/asset/c04a5fa7-ac6d-4a1a-af9c-da289bfea190";
-const imgIcon1 =
-  "https://www.figma.com/api/mcp/asset/31f0de6b-0bf8-4b31-8a4d-47a75b1886a9";
 
 export const HeroSection = () => {
   return (
@@ -46,32 +38,38 @@ export const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5">
-              <button className="bg-[#eb6e5c] text-white px-8 py-3 rounded-[10px] font-bold inline-flex items-center gap-3 hover:opacity-90">
+              <button className="bg-[#eb6e5c] relative text-white px-8 py-3 rounded-[10px] font-bold inline-flex items-center gap-3 hover:opacity-90">
                 কোর্স খুঁজুন
-                <img src={imgIcon} alt="arrow" className="w-5 h-5" />
-              </button>
-              <button className="border-2 border-[#eb6e5c] text-[#eb6e5c] px-8 py-3 rounded-[10px] font-bold hover:bg-[#eb6e5c] hover:text-white">
-                ফ্রি প্রস্তুতি
-                <img
-                  src={imgIcon1}
+                <Image
+                  src={assets.icons.rectangle}
                   alt="arrow"
-                  className="w-5 h-5 inline ml-3"
+                  className="w-6 h-12 absolute right-0 "
                 />
+              </button>
+              <button className="border-2 border-primary text-primary flex items-center gap-1.5 px-8 py-3 rounded-[10px] font-bold hover:bg-[#eb6e5c] hover:text-white">
+                ফ্রি প্রস্তুতি
+                <ArrowRight className="text-primary" />
               </button>
             </div>
           </div>
 
           {/* Right Image */}
           <div className="relative">
-            <img src={imgImage} alt="Hero" className="w-full rounded-lg" />
+            <Image
+              src={assets.images.hero}
+              alt="Hero"
+              className="w-full rounded-lg"
+              width={630}
+              height={650}
+            />
             {/* Stats Cards */}
-            <div className="absolute bottom-8 left-8 bg-white rounded-lg p-4 shadow-lg">
+            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-8 left-8 bg-white rounded-lg p-4 shadow-lg">
               <div className="text-2xl font-bold text-[#00170f]">১০০%</div>
               <div className="text-sm text-[#171717]">সন্তুষ্ট</div>
             </div>
-            <div className="absolute top-1/2 right-8 bg-white rounded-lg p-4 shadow-lg">
+            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-1/2 right-8 bg-white rounded-sm p-4 shadow-lg">
               <div className="text-2xl font-bold text-[#288b6a]">৩০কে+</div>
-              <div className="text-sm text-[#171717]">ছাত্র বিশ্বব্যাপী</div>
+              <div className="text-sm text-[#171717]">শিক্ষার্থী</div>
             </div>
           </div>
         </div>

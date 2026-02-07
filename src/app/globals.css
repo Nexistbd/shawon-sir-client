@@ -4,11 +4,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Kalpurush";
+  src: local("Kalpurush"), local("Kalpurush Regular");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-kalpurush);
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -35,6 +45,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primay: var(--primay);
+  --color-green: var(--green);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -46,14 +58,19 @@
 }
 
 :root {
+  --font-kalpurush:
+    "Kalpurush", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.684 0.158 30.049);
   --primary-foreground: oklch(0.985 0 0);
+  --primay: oklch(0.684 0.158 30.049);
+  --green: oklch(0.572 0.104 166.38);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
@@ -88,8 +105,10 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.141 0.005 285.823);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.684 0.158 30.049);
+  --primary-foreground: oklch(0.985 0 0);
+  --primay: oklch(0.684 0.158 30.049);
+  --green: oklch(0.572 0.104 166.38);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
@@ -122,5 +141,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
   }
+}
+
+.font-kalpurush {
+  font-family: var(--font-kalpurush);
 }
