@@ -16,7 +16,7 @@ import { logger } from "@/utils/logger";
 import { TError } from "@/types";
 
 const Registration = () => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useAppDispatch();
@@ -30,7 +30,6 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
-  const handleAdd = async (data: FieldValues) => {};
   const handlePhoneChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
     setPhone(formatted);
@@ -149,8 +148,10 @@ const Registration = () => {
                 <Input
                   id="login-phone"
                   type="tel"
+                  value={phone as string}
+                  onChange={handlePhoneChange}
                   placeholder="আপনার ফোন নম্বর লিখুন"
-                  {...register("phone")}
+                  {...(register("phone"), { required: true })}
                   className="pl-10 h-12 rounded-xl border-gray-200 focus:border-teal-500 focus:ring-teal-500"
                 />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -158,9 +159,7 @@ const Registration = () => {
                 </span>
               </div>
               {errors.phone && (
-                <p className="text-red-500 text-sm">
-                  {errors.phone.message as string}
-                </p>
+                <p className="text-red-500 text-sm">Phone Number required</p>
               )}
             </div>
 

@@ -48,7 +48,7 @@ export function LoginSheetProvider({ children }: { children: ReactNode }) {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="right" className="w-full sm:max-w-md p-0">
           <SheetHeader className="p-6 pb-0">
-            <SheetTitle>শাওন স্যার সাথে শুরু করুন </SheetTitle>
+            <SheetTitle>শাওন স্যারের সাথে শুরু করুন </SheetTitle>
           </SheetHeader>
           <div className="p-6">
             <Login />

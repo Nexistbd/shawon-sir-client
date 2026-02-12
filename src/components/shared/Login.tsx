@@ -13,18 +13,17 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Eye, EyeOff, Info, Lock, Phone, X } from "lucide-react";
-import Image from "next/image";
-import assets from "@/assets";
+
 import LoadingButton from "./Loading";
 import Registration from "./Registration";
 import { useLoginSheet } from "./LoginSheet";
-// import { toast } from "sonner";
-// Using console.log for now. Install sonner or use CustomToast for production.
 
-// Validation schema for login
 const loginSchema = z.object({
   phone: z.string().min(11, "ফোন নম্বর অবশ্যই ১১ সংখ্যার হতে হবে"),
-  password: z.string().min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে"),
+  password: z
+    .string()
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .max(10, "পাসওয়ার্ড ১০ অক্ষরের বেশি হতে পারবেনা "),
 });
 
 // Validation schema for registration
@@ -96,14 +95,6 @@ export default function Login() {
       <Card className="w-full max-w-md shadow-lg border-0 rounded-3xl overflow-hidden">
         <CardContent className="p-0">
           {/* Header with Logo and Close Button */}
-          <div className="flex items-center justify-between p-6 pb-4">
-            <div className="w-12 h-12  ">
-              <Image src={assets.logo.logoSvg} alt="logo" />
-            </div>
-            <button className="text-gray-400 hover:text-gray-600 transition-colors">
-              <X size={20} />
-            </button>
-          </div>
 
           {/* Tabs */}
           <Tabs
