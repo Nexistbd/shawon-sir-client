@@ -13,7 +13,7 @@ const Header = () => {
   console.log(theme, "them");
   const pathname = usePathname();
   return (
-    <div className="w-full shadow-[5px_1px_10px_1px_rgba(0,0,0,0.3)] fixed top-0 left-0 right-0 z-30  px-3">
+    <div className="w-full bg-white dark:bg-[#022A1C] shadow-[5px_1px_10px_1px_rgba(0,0,0,0.3)] fixed top-0 left-0 right-0 z-30  px-3">
       <div className="h-16 flex items-center justify-between w-full max-w-7xl mx-auto container">
         {/* logo */}
         <Link href={"/"}>

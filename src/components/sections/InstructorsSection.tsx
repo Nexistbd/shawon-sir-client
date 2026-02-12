@@ -74,7 +74,7 @@ export function InstructorsSection() {
   ];
 
   return (
-    <div className="relative w-full bg-[#f0f4f5] dark:bg-[#033423] py-16 ">
+    <div className="relative w-full bg-[#f0f4f5] dark:bg-[#033423] py-16 lg:mtt-37.5 ">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-4">
