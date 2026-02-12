@@ -56,7 +56,7 @@ export function BooksSection() {
   ];
 
   return (
-    <div className="relative w-full  py-16 md:py-24 lg:py-32">
+    <div className="relative w-full  mt-37.5">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-3">

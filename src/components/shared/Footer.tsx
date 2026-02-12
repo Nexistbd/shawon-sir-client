@@ -5,7 +5,7 @@ import React from "react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="bg-[#1C1E27] text-white h-20 flex flex-col justify-center">
+    <div className="bg-[#1C1E27] mt-37.5 text-white h-20 flex flex-col justify-center">
       <div className="flex justify-between items-center  container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p>@ Copyright {currentYear} by Shawon Sir </p>
         <div>
@@ -19,7 +19,7 @@ const Footer = () => {
           </Link>{" "}
         </div>
 
-        <div className="flex">
+        <div className="flex gap-2.5">
           <Facebook /> <Youtube />
         </div>
       </div>
