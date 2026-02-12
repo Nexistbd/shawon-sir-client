@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ import Image from "next/image";
 import assets from "@/assets";
 import LoadingButton from "./Loading";
 import Registration from "./Registration";
+import { useLoginSheet } from "./LoginSheet";
 // import { toast } from "sonner";
 // Using console.log for now. Install sonner or use CustomToast for production.
 
@@ -35,6 +36,19 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  // Get closeLogin from context if available
+  let closeLogin: (() => void) | undefined;
+  try {
+    closeLogin = useLoginSheet().closeLogin;
+  } catch {
+    // Not in LoginSheetProvider, ignore
+  }
+
+  // Get the callback URL from query params, default to "/dashboard"
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -51,15 +65,22 @@ export default function Login() {
         phone: data.phone,
         password: data.password,
         redirect: false,
+        callbackUrl,
       });
 
       if (result?.error) {
         console.error("Login failed:", result.error);
         // toast.error("লগইন ব্যর্থ হয়েছে। আপনার ফোন নম্বর এবং পাসওয়ার্ড যাচাই করুন।");
       } else {
-        console.log("Login successful!");
-        // toast.success("লগইন সফল হয়েছে!");
-        router.push("/");
+        // Close the sheet if used in a modal
+        if (closeLogin) {
+          closeLogin();
+        }
+        // Redirect to the callback URL after successful login
+        // Clear the login query param to prevent auto-opening on refresh
+        const newSearchParams = new URLSearchParams();
+        newSearchParams.set("callbackUrl", callbackUrl);
+        router.push(`${pathname}?${newSearchParams.toString()}`);
         router.refresh();
       }
     } catch (error) {

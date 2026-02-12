@@ -4,6 +4,7 @@ import assets from "@/assets";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/heroImage.png";
+import { LoginButton } from "@/components/shared/LoginSheet";
 
 // Assets
 
@@ -47,10 +48,10 @@ export const HeroSection = () => {
                   className="w-6 h-12 absolute right-0 "
                 />
               </button>
-              <button className="border-2 border-primary text-primary flex items-center gap-1.5 px-8 py-3 rounded-[10px] font-bold hover:bg-[#eb6e5c] hover:text-white">
+              <LoginButton className="border-2 border-primary text-primary flex items-center gap-1.5 px-8 py-3 rounded-[10px] font-bold hover:bg-[#eb6e5c] hover:text-white">
                 ফ্রি প্রস্তুতি
                 <ArrowRight className="text-primary" />
-              </button>
+              </LoginButton>
             </div>
           </div>
 
