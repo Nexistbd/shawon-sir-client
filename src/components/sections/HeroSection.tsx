@@ -10,7 +10,7 @@ import { LoginButton } from "@/components/shared/LoginSheet";
 
 export const HeroSection = () => {
   return (
-    <section className="bg-white ">
+    <section className="bg-white mt-20 ">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -66,11 +66,11 @@ export const HeroSection = () => {
             />
 
             {/* Stats Cards */}
-            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-8 left-8 bg-white rounded-lg p-4 shadow-lg">
+            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-8 left-8 bg-white rounded-lg px-4 py-1 shadow-lg w-36">
               <div className="text-2xl font-bold text-[#00170f]">১০০%</div>
               <div className="text-sm text-[#171717]">সন্তুষ্ট</div>
             </div>
-            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-1/2 right-8 bg-white rounded-sm p-4 shadow-lg">
+            <div className="absolute border-e-2 border-b-2  border-r-primary border-b-primary top-1/2 right-8 bg-white rounded-sm  px-4 py-1 shadow-lg w-36">
               <div className="text-2xl font-bold text-[#288b6a]">৩০কে+</div>
               <div className="text-sm text-[#171717]">শিক্ষার্থী</div>
             </div>
