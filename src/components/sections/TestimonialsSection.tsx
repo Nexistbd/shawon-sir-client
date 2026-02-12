@@ -1,5 +1,9 @@
 "use client";
 
+import assets from "@/assets";
+import { Star } from "lucide-react";
+import Image from "next/image";
+
 const imgReview1 =
   "https://www.figma.com/api/mcp/asset/e6bcfbc9-e7e4-4706-bf1e-1fb4c18ce278";
 const imgReview2 =
@@ -18,15 +22,8 @@ interface ReviewCardProps {
 }
 
 const ReviewCard = ({ name, role, text, image, rating }: ReviewCardProps) => (
-  <div className="rounded-3xl bg-white p-8 shadow-xl">
+  <div className="rounded-3xl bg-white px-8 shadow-xl">
     {/* Stars */}
-    <div className="mb-4 flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className="text-lg">
-          {i < rating ? "⭐" : "☆"}
-        </div>
-      ))}
-    </div>
 
     {/* Review Text */}
     <p className="mb-6 text-base leading-relaxed text-[#737373]">{text}</p>
@@ -72,12 +69,7 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <div className="relative w-full bg-white py-16 md:py-24 lg:py-32">
-      {/* Decorative background */}
-      <div className="absolute inset-0 opacity-5">
-        <img alt="" src={imgVector} className="h-full w-full object-cover" />
-      </div>
-
+    <div className="relative w-full  py-16 md:py-24 lg:py-32">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-3">
@@ -85,13 +77,13 @@ export function TestimonialsSection() {
             প্রশংসাপত্র
           </p>
           <div className="text-center">
-            <h2 className="font-kalpurush text-4xl font-semibold text-[#292929] md:text-5xl">
+            <h2 className="font-kalpurush text-4xl font-semibold text-[#292929] dark:text-white md:text-5xl">
               মেধাবীদের স্বীকৃতি
             </h2>
-            <img
+            <Image
               alt="decorative line"
-              src={imgVector}
-              className="mx-auto mt-2 h-4"
+              src={assets.icons.brunsh}
+              className="ml-auto mt-2 h-4"
             />
           </div>
         </div>

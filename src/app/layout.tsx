@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/lib/Provider";
 import { LoginSheetProvider } from "@/components/shared/LoginSheet";
 import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <LoginSheetProvider>
             <Header />
             {children}
+            <Footer />
           </LoginSheetProvider>
         </Providers>
       </body>

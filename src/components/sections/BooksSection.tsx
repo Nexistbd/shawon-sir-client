@@ -1,5 +1,9 @@
 "use client";
 
+import assets from "@/assets";
+import { BookCard } from "./BookCard";
+import Image from "next/image";
+
 const imgImageEffectiveStudyHabits =
   "https://www.figma.com/api/mcp/asset/f4592428-f46e-4a62-83f4-ff7f192f58d0";
 const imgImageCalculusMadeEasy =
@@ -10,56 +14,6 @@ const imgImagePhysicsEngineering =
   "https://www.figma.com/api/mcp/asset/f3c0fbc4-afe8-4384-b35e-e0cf2b9d0dc0";
 const imgVector =
   "https://www.figma.com/api/mcp/asset/7055b104-c00b-4947-8b19-65eae8b067d2";
-const imgIcon =
-  "https://www.figma.com/api/mcp/asset/611e366e-9ced-4d14-9b10-76ce76168672";
-
-interface BookCardProps {
-  image: string;
-  title: string;
-  author: string;
-  rating: string;
-  reviews: string;
-  price: string;
-  badge: string;
-}
-
-const BookCard = ({
-  image,
-  title,
-  author,
-  rating,
-  reviews,
-  price,
-  badge,
-}: BookCardProps) => (
-  <div className="flex flex-col gap-4">
-    <div className="relative h-64 overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-      <img alt={title} src={image} className="h-full w-full object-cover" />
-      <div className="absolute left-3 top-3 inline-block rounded-full bg-white bg-opacity-90 px-3 py-1 font-bold text-xs text-[#288b6a]">
-        {badge}
-      </div>
-    </div>
-    <div className="flex flex-col gap-3">
-      <div>
-        <h3 className="font-bold text-[#0f172b] text-base mb-2 line-clamp-2">
-          {title}
-        </h3>
-        <p className="text-sm text-[#62748e]">{author}</p>
-      </div>
-      <div className="flex items-center gap-2">
-        <img alt="star" src={imgIcon} className="h-4 w-4" />
-        <span className="font-medium text-[#314158] text-sm">{rating}</span>
-        <span className="text-xs text-[#90a1b9]">({reviews})</span>
-      </div>
-      <div className="flex items-center justify-between">
-        <p className="font-bold text-[#288b6a] text-xl">{price}</p>
-        <button className="rounded-lg bg-[#288b6a] px-3 py-2 font-medium text-sm text-white">
-          এখনই কিনুন
-        </button>
-      </div>
-    </div>
-  </div>
-);
 
 export function BooksSection() {
   const books = [
@@ -102,7 +56,7 @@ export function BooksSection() {
   ];
 
   return (
-    <div className="relative w-full bg-white py-16 md:py-24 lg:py-32">
+    <div className="relative w-full  py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-3">
@@ -110,13 +64,13 @@ export function BooksSection() {
             প্রকাশনী
           </p>
           <div className="text-center">
-            <h2 className="font-kalpurush text-4xl font-semibold text-[#00170f] md:text-5xl">
+            <h2 className="font-kalpurush text-4xl font-semibold text-[#00170f] dark:text-white md:text-5xl">
               আমাদের বইসমূহ
             </h2>
-            <img
+            <Image
               alt="decorative line"
-              src={imgVector}
-              className="mx-auto mt-2 h-4"
+              src={assets.icons.brunsh}
+              className="ml-auto mt-2 h-4"
             />
           </div>
         </div>

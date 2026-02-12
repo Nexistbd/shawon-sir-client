@@ -1,5 +1,8 @@
 "use client";
 
+import assets from "@/assets";
+import Image from "next/image";
+
 const imgImage =
   "https://www.figma.com/api/mcp/asset/5181fffb-58d9-4ad7-b82c-13389364d9cd";
 const imgVector =
@@ -71,7 +74,7 @@ export function InstructorsSection() {
   ];
 
   return (
-    <div className="relative w-full bg-[#f0f4f5] py-16 md:py-24 lg:py-32">
+    <div className="relative w-full bg-[#f0f4f5] dark:bg-[#033423] py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-4">
@@ -79,13 +82,13 @@ export function InstructorsSection() {
             প্রশিক্ষক
           </p>
           <div className="text-center">
-            <h2 className="font-kalpurush text-4xl font-semibold text-[#00170f] md:text-5xl">
+            <h2 className="font-kalpurush text-4xl font-semibold text-[#00170f] dark:text-white md:text-5xl">
               অভিজ্ঞ শিক্ষক প্যানেল
             </h2>
-            <img
+            <Image
               alt="decorative line"
-              src={imgVector}
-              className="mx-auto mt-2 h-4"
+              src={assets.icons.brunsh}
+              className="ml-auto mt-2 h-4"
             />
           </div>
         </div>
