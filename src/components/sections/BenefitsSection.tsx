@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const BenefitsSection = () => {
   return (
-    <section className="bg-[#f2f2f2] border-t border-b border-[#e3e3e3] py-16">
+    <section className="bg-[#f2f2f2] dark:bg-teal-700 border-t border-b border-[#e3e3e3] dark:border-teal-700 py-16">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Benefit 1 */}
@@ -16,10 +16,10 @@ export const BenefitsSection = () => {
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#00170f] mb-2">
+              <h3 className="text-lg font-bold text-[#00170f] dark:text-gray-200 mb-2">
                 ২৪,০০০-এরও বেশি ভিডিও কোর্স
               </h3>
-              <p className="text-[#808080] text-sm">
+              <p className="text-[#808080] dark:text-gray-200 text-sm">
                 অ্যাক্সেসের মাধ্যমে দক্ষতা অর্জন করুন।
               </p>
             </div>
@@ -33,10 +33,10 @@ export const BenefitsSection = () => {
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#00170f] mb-2">
+              <h3 className="text-lg font-bold text-[#00170f] dark:text-gray-200 mb-2">
                 শিল্প বিশেষজ্ঞদের কোর্স
               </h3>
-              <p className="text-[#808080] text-sm">
+              <p className="text-[#808080] dark:text-gray-200 text-sm">
                 শিল্প বিশেষজ্ঞদের দ্বারা শেখানো কোর্সগুলি থেকে শিখুন।
               </p>
             </div>
@@ -44,16 +44,16 @@ export const BenefitsSection = () => {
 
           {/* Benefit 3 */}
           <div className="flex gap-4">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="flex items-center justify-center h-20 w-20 rounded-full bg-[#288b6a]">
                 <Image src={assets.icons.file} alt="file" />
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#00170f] mb-2">
+              <h3 className="text-lg font-bold text-[#00170f] dark:text-gray-200 mb-2">
                 যেকোনো সময়, যেকোনো জায়গায়
               </h3>
-              <p className="text-[#808080] text-sm">
+              <p className="text-[#808080] dark:text-gray-200 text-sm">
                 যেকোনো ডিভাইসে সীমাহীন অ্যাক্সেস সহ শিখুন।
               </p>
             </div>

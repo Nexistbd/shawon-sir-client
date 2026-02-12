@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import ClassCard from "./ClassCard";
+import assets from "@/assets";
 
 // Assets
 const imgImageClass =
@@ -15,21 +16,25 @@ const imgIcon =
 const imgIcon1 =
   "https://www.figma.com/api/mcp/asset/80632ca7-16b0-4161-bd59-a16e289f688c";
 
-
-
 export const TrendingClassesSection = () => {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24  ">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-[#07a169] text-sm uppercase mb-4">
             ট্রেন্ডিং ক্লাস
           </p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-[#00170f] relative inline-block">
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#00170f] dark:text-white relative inline-block">
             ফ্রি ক্লাস
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-              <img src={imgVector} alt="" className="h-4" />
+            <div className="absolute -bottom-4  -right-1.5  ">
+              <Image
+                src={assets.icons.brunsh}
+                width={70}
+                height={50}
+                alt="img"
+                className="h-4"
+              />
             </div>
           </h2>
         </div>

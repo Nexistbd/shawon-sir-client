@@ -1,5 +1,9 @@
 "use client";
 
+import assets from "@/assets";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Image from "next/image";
+
 const imgVector =
   "https://www.figma.com/api/mcp/asset/5f61d615-db73-4c37-ab29-c3b6364d1ad8";
 const imgIcon =
@@ -35,20 +39,20 @@ const imgIcon14 =
 
 export function QuickExamSection() {
   return (
-    <div className="relative w-full bg-white py-16 md:py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full  py-16 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-center gap-3">
           <p className="font-kalpurush text-sm font-normal uppercase text-[#07a169]">
             এক্সাম
           </p>
           <div className="text-center">
-            <h2 className="font-kalpurush text-4xl font-semibold text-[#292929] md:text-5xl">
+            <h2 className="font-kalpurush text-4xl font-semibold text-[#292929] dark:text-white dark:text-white md:text-5xl">
               কুইক এক্সাম
             </h2>
-            <img
+            <Image
               alt="decorative line"
-              src={imgVector}
+              src={assets.icons.brunsh}
               className="mx-auto mt-2 h-4"
             />
           </div>
@@ -62,11 +66,11 @@ export function QuickExamSection() {
               <span className="inline-block rounded-full bg-[#eaf3f0] px-3 py-1 font-nunito text-xs font-bold text-[#288b6a]">
                 New
               </span>
-              <h3 className="font-nunito text-2xl font-semibold text-[#292929]">
+              <h3 className="font-nunito text-2xl font-semibold text-[#292929] dark:text-white">
                 এক্সাম দিন
               </h3>
             </div>
-            <p className="font-nunito text-base text-[#292929]">
+            <p className="font-nunito text-base text-[#292929] dark:text-white">
               ২–১০ মিনিটে ঝটপট প্র্যাকটিস করে স্কোর দেখুন।
             </p>
 
@@ -74,17 +78,19 @@ export function QuickExamSection() {
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
               <div className="flex items-center gap-1 rounded-lg border border-[#f1f5f9] bg-white px-3 py-2 shadow-sm">
                 <img alt="timed" src={imgIcon} className="h-4 w-4" />
-                <span className="font-nunito text-xs text-[#999]">টাইমড</span>
+                <span className="font-nunito text-xs text-[#999] dark:text-black">
+                  টাইমড
+                </span>
               </div>
               <div className="flex items-center gap-1 rounded-lg border border-[#f1f5f9] bg-white px-3 py-2 shadow-sm">
                 <img alt="instant result" src={imgIcon1} className="h-4 w-4" />
-                <span className="font-nunito text-xs text-[#999]">
+                <span className="font-nunito text-xs text-[#999] dark:text-black">
                   ইনস্ট্যান্ট রেজাল্ট
                 </span>
               </div>
               <div className="flex items-center gap-1 rounded-lg border border-[#f1f5f9] bg-white px-3 py-2 shadow-sm">
                 <img alt="solutions" src={imgIcon2} className="h-4 w-4" />
-                <span className="font-nunito text-xs text-[#999]">
+                <span className="font-nunito text-xs text-[#999] dark:text-black">
                   ব্যাখ্যাসহ সমাধান
                 </span>
               </div>
@@ -102,7 +108,7 @@ export function QuickExamSection() {
             <div className="grid gap-4">
               {/* Trending Exams */}
               <div className="mb-6 flex gap-4 border-b border-[#f1f5f9] pb-4">
-                <button className="flex items-center gap-2 font-bold text-[#292929]">
+                <button className="flex items-center gap-2 font-bold text-[#292929] dark:text-white">
                   <img alt="trending" src={imgIcon7} className="h-4 w-4" />
                   ট্রেন্ডিং
                 </button>
@@ -119,10 +125,10 @@ export function QuickExamSection() {
                     <img alt="exam" src={imgIcon9} className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="font-nunito font-bold text-[#292929]">
+                    <h4 className="font-nunito font-bold text-[#292929] ">
                       BCS প্রিলি মক টেস্ট
                     </h4>
-                    <div className="mt-1 flex gap-2 text-xs text-[#999]">
+                    <div className="mt-1 flex gap-2 text-xs text-[#999] dark:text-black">
                       <span>⏱ ২০ মিনিট</span>
                       <span>❓ 25 প্রশ্ন</span>
                       <span className="inline-flex items-center gap-1 text-[#eb6e5c]">
@@ -143,56 +149,16 @@ export function QuickExamSection() {
                     <img alt="exam" src={imgIcon11} className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="font-nunito font-bold text-[#292929]">
+                    <h4 className="font-nunito font-bold text-[#292929] ">
                       IELTS রিডিং প্র্যাকটিস
                     </h4>
-                    <div className="mt-1 flex gap-2 text-xs text-[#999]">
+                    <div className="mt-1 flex gap-2 text-xs text-[#999] dark:text-black">
                       <span>⏱ ১৫ মিনিট</span>
                       <span>❓ 20 প্রশ্ন</span>
                     </div>
                   </div>
                 </div>
-                <button className="rounded-lg border border-gray-300 bg-white px-4 py-2 font-bold text-[#292929]">
-                  দেখুন
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4">
-                <div className="flex gap-4">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f1f5f9]">
-                    <img alt="exam" src={imgIcon12} className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-nunito font-bold text-[#292929]">
-                      সাধারণ জ্ঞান (GK) টেস্ট
-                    </h4>
-                    <div className="mt-1 flex gap-2 text-xs text-[#999]">
-                      <span>⏱ ১০ মিনিট</span>
-                      <span>❓ 15 প্রশ্ন</span>
-                    </div>
-                  </div>
-                </div>
-                <button className="rounded-lg border border-gray-300 bg-white px-4 py-2 font-bold text-[#292929]">
-                  দেখুন
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4">
-                <div className="flex gap-4">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f1f5f9]">
-                    <img alt="exam" src={imgIcon13} className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-nunito font-bold text-[#292929]">
-                      গণিত শর্ট টেস্ট
-                    </h4>
-                    <div className="mt-1 flex gap-2 text-xs text-[#999]">
-                      <span>⏱ ১২ মিনিট</span>
-                      <span>❓ 15 প্রশ্ন</span>
-                    </div>
-                  </div>
-                </div>
-                <button className="rounded-lg border border-gray-300 bg-white px-4 py-2 font-bold text-[#292929]">
+                <button className="rounded-lg border border-gray-300 dark:bg-black bg-white px-4 py-2 font-bold text-[#292929] dark:text-white">
                   দেখুন
                 </button>
               </div>
@@ -202,7 +168,7 @@ export function QuickExamSection() {
                 className="flex items-center gap-2 text-[#eb6e5c] font-medium mt-4"
               >
                 আরও দেখুন
-                <img alt="arrow" src={imgIcon14} className="h-3 w-3" />
+                <ArrowRight size={14} />
               </a>
             </div>
           </div>

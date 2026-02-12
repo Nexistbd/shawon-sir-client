@@ -1,5 +1,6 @@
 "use client";
 
+import assets from "@/assets";
 import Image from "next/image";
 
 // Assets
@@ -119,17 +120,23 @@ export const TrendingCoursesSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 ">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-[#07a169] text-sm font-['Kalpurush'] uppercase mb-4">
             ট্রেন্ডিং কোর্স
           </p>
-          <h2 className="text-4xl lg:text-5xl font-['Kalpurush'] font-bold text-[#00170f] relative inline-block">
+          <h2 className="text-4xl lg:text-5xl font-['Kalpurush'] font-bold text-[#00170f] dark:text-white relative inline-block">
             আমাদের কোর্সসমূহ
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-              <img src={imgVector} alt="" className="h-4" />
+            <div className="absolute -bottom-7  -right-4  ">
+              <Image
+                width={100}
+                height={20}
+                src={assets.icons.brunsh}
+                alt="img"
+                className="h-4"
+              />
             </div>
           </h2>
         </div>

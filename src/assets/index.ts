@@ -5,6 +5,7 @@ import fileIcon from "@/assets/file.svg";
 import pcIcon from "@/assets/pc.svg";
 import manIcon from "@/assets/man.svg";
 import logoSvg from "@/assets/logo.svg";
+import burshIcon from "@/assets/brushIcon.svg";
 
 export default {
   logo: {
@@ -21,5 +22,6 @@ export default {
     file: fileIcon,
     pc: pcIcon,
     man: manIcon,
+    brunsh: burshIcon,
   },
 };

@@ -10,19 +10,19 @@ import { LoginButton } from "@/components/shared/LoginSheet";
 
 export const HeroSection = () => {
   return (
-    <section className="bg-white mt-20 ">
+    <section className=" pt-24 md:pt-40 ">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col md:flex-row items-start gap-12 justify-between">
           {/* Left Content */}
           <div className="flex flex-col gap-9">
             {/* Label */}
-            <div className="text-[#288b6a] text-sm font-['Kalpurush'] uppercase">
+            <div className="text-[#288b6a] dark:text-green-400 text-sm font-['Kalpurush'] uppercase">
               আমাদের পোর্টালে স্বাগতম
             </div>
 
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 className="text-[#00170f] text-5xl lg:text-6xl font-['Kalpurush'] font-bold">
+              <h1 className="text-[#00170f] dark:text-white text-5xl lg:text-6xl font-['Kalpurush'] font-bold">
                 সাফল্যের{" "}
                 <span className="bg-linear-to-r from-[#e64460] to-[#f9d252] bg-clip-text text-transparent">
                   নিশ্চয়তায়
@@ -33,13 +33,13 @@ export const HeroSection = () => {
             </div>
 
             {/* Description */}
-            <p className="text-[#808080] text-base leading-relaxed max-w-lg">
+            <p className="text-[#808080] dark:text-gray-300 text-base leading-relaxed max-w-lg">
               আমাদের অনলাইন শিক্ষা প্ল্যাটফর্মে যোগ দিন এবং আপনার স্বপ্নের
               পাবলিক বিশ্ববিদ্যালয়ে ভর্তির জন্য প্রয়োজনীয় দক্ষতা অর্জন করুন।
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-5">
+            <div className="flex  items-center  gap-5">
               <button className="bg-[#eb6e5c] relative text-white px-8 py-3 rounded-[10px] font-bold inline-flex items-center gap-3 hover:opacity-90">
                 কোর্স খুঁজুন
                 <Image
@@ -60,9 +60,9 @@ export const HeroSection = () => {
             <Image
               src={heroImage}
               alt="Hero"
-              className="w-full rounded-lg"
-              width={630}
-              height={650}
+              className="w-full rounded-lg h-full max-h-[600px]"
+              width={600}
+              height={620}
             />
 
             {/* Stats Cards */}

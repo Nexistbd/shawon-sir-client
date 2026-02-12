@@ -10,9 +10,10 @@ import { ModeToggle } from "../ui/toogle-mood";
 
 const Header = () => {
   const { theme } = useTheme();
+  console.log(theme, "them");
   const pathname = usePathname();
   return (
-    <div className="w-full shadow-[5px_1px_10px_1px_rgba(0,0,0,0.3)] fixed top-0 left-0 right-0 z-30 bg-white dark:bg-[#021421] px-3">
+    <div className="w-full shadow-[5px_1px_10px_1px_rgba(0,0,0,0.3)] fixed top-0 left-0 right-0 z-30  px-3">
       <div className="h-16 flex items-center justify-between w-full max-w-7xl mx-auto container">
         {/* logo */}
         <Link href={"/"}>
@@ -31,7 +32,7 @@ const Header = () => {
                   href={item.route}
                   className={`transition-all xl:text-lg ${
                     isActive
-                      ? "text-green font-semibold border-b border-b-green "
+                      ? "text-green font-semibold border-b border-b-green dark:text-green-400 "
                       : "text-gray-800 dark:text-[#D9E1E8] hover:text-green"
                   }`}
                 >
