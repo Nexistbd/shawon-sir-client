@@ -16,7 +16,7 @@ import { logger } from "@/utils/logger";
 import { TError } from "@/types";
 
 const Registration = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(3);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useAppDispatch();
@@ -128,9 +128,9 @@ const Registration = () => {
       {step === 1 && (
         <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 mb-6 relative">
           <div className="flex gap-3">
-            <Info className="text-teal-500 flex-shrink-0 mt-0.5" size={20} />
+            <Info className="text-teal-500 shrink-0 mt-0.5" size={20} />
             <p className="text-sm text-teal-800 leading-relaxed">
-              ফোন নাম্বার দিন
+              অ্যাকাউন্ট করতে ফোন নাম্বার দিন
             </p>
           </div>
         </div>
@@ -196,11 +196,14 @@ const Registration = () => {
           />
         )}
         {step === 3 && (
-          <form onSubmit={handleSubmit(onSignupSubmit)} className="space-y-4">
+          <form
+            onSubmit={handleSubmit(onSignupSubmit)}
+            className="space-y-4 px-1.5"
+          >
             <div className="space-y-2">
               <Label
                 htmlFor="signup-phone"
-                className="text-sm font-medium text-gray-700"
+                className=" font-medium text-gray-700"
               >
                 নাম <Required />
               </Label>
@@ -209,7 +212,7 @@ const Registration = () => {
                 <Input
                   id="signup-name"
                   type="tel"
-                  placeholder="Enter your name"
+                  placeholder="আপনার নাম লিখুন"
                   className="pl-10 h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                   {...register("name", {
                     required: "Name  is required",
@@ -235,7 +238,7 @@ const Registration = () => {
                 <Input
                   id="signup-password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a password"
+                  placeholder="একটি  পাসওয়ার্ড দিন"
                   className="pl-10 pr-10 h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                   {...register("password", {
                     required: "Password is required",
@@ -273,7 +276,7 @@ const Registration = () => {
                 <Input
                   id="signup-confirm-password"
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm your password"
+                  placeholder="পুনরায় পাসওয়ার্ড দিন"
                   className="pl-10 pr-10 h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
@@ -300,12 +303,12 @@ const Registration = () => {
 
             <Button
               type="submit"
-              className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-200"
+              className="w-full h-11 bg-primary hover:bg-blue-700 text-white font-medium transition-colors duration-200"
               //   disabled={isSigning || isLoging}
             >
               {/* {isSigning || isLoging ? "Creating account..." : "Create Account"}
                */}
-              একাউন্ট খুলুন
+              অ্যাকাউন্ট খুলুন
             </Button>
           </form>
         )}
