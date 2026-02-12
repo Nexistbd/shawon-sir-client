@@ -20,7 +20,7 @@ const imgIcon1 =
 export const TrendingClassesSection = () => {
   return (
     <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-[#07a169] text-sm uppercase mb-4">
