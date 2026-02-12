@@ -76,18 +76,20 @@ const OTPInput = ({
     setError("");
 
     // Simulate resend API call
-    const res = await triggerSendOtp(phone).unwrap();
-    if (res.success) {
-      document.getElementById("otp-0")?.focus();
-    }
+    // const res = await triggerSendOtp(phone).unwrap();
+    // if (res.success) {
+    //   document.getElementById("otp-0")?.focus();
+    // }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 space-y-6">
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-gray-900">ওটিপি যাচাইকরণ</h2>
+    <div className="w-full max-w-md mx-auto  space-y-6">
+      <div className="text-center space-y-2 mt-5">
+        <p className="text-3xl font-extrabold text-[#1D293D]">
+          ওটিপি যাচাই করুন
+        </p>
         <p className="text-sm text-gray-600">
-          <span className="font-semibold text-gray-900">{phone}</span>
+          <span className=" text-gray-900">{phone}</span>
           <br />
           এই নম্বরে ওটিপি পাঠানো হয়েছে
         </p>
@@ -110,8 +112,8 @@ const OTPInput = ({
                 error
                   ? "border-red-500 focus:ring-red-500"
                   : digit
-                  ? "border-blue-500 focus:ring-blue-500"
-                  : "border-gray-300 focus:ring-blue-500"
+                    ? "border-blue-500 focus:ring-blue-500"
+                    : "border-gray-300 focus:ring-blue-500"
               } ${isVerifying ? "opacity-50 cursor-not-allowed" : ""}`}
             />
           ))}
@@ -125,8 +127,8 @@ const OTPInput = ({
         )}
 
         {isVerifying && (
-          <div className="flex items-center justify-center gap-2 text-blue-600 text-sm">
-            <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <div className="flex items-center justify-center gap-2 text-sm">
+            <div className="w-4 h-4 border-2 0 border-t-transparent rounded-full animate-spin" />
             <span>যাচাই করা হচ্ছে...</span>
           </div>
         )}
@@ -135,7 +137,7 @@ const OTPInput = ({
           <span className="text-gray-600">কোড পাননি?</span>
           <button
             onClick={handleResend}
-            disabled={!canResend || isVerifying || isLoading}
+            disabled={!canResend || isVerifying}
             className={`font-semibold flex items-center gap-1 transition-colors ${
               canResend && !isVerifying
                 ? "text-blue-600 hover:text-blue-700"
@@ -151,7 +153,7 @@ const OTPInput = ({
       <button
         onClick={() => handleVerify(otp.join(""))}
         disabled={otp.some((digit) => digit === "") || isVerifying}
-        className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"
+        className="w-full py-3 px-4 bg-green text-white font-semibold rounded-lg transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"
       >
         {isVerifying ? "যাচাই করা হচ্ছে..." : "যাচাই করুন"}
       </button>

@@ -16,7 +16,7 @@ import { logger } from "@/utils/logger";
 import { TError } from "@/types";
 
 const Registration = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useAppDispatch();
@@ -125,46 +125,49 @@ const Registration = () => {
 
   return (
     <div>
-      <div className="my-3.5 mb-5 pb-2.5 border-b  ">
-        <h1 className="text-3xl font-bold opacity-80">Sign Up</h1>
-        <p className="text-sm font-light">Welcome To Career Aid </p>
-      </div>
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 h-full">
+      {step === 1 && (
+        <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 mb-6 relative">
+          <div className="flex gap-3">
+            <Info className="text-teal-500 flex-shrink-0 mt-0.5" size={20} />
+            <p className="text-sm text-teal-800 leading-relaxed">
+              ফোন নাম্বার দিন
+            </p>
+          </div>
+        </div>
+      )}
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md  h-full">
         {step === 1 && (
           <form onSubmit={handlePhoneSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label
+              <Label
                 htmlFor="login-phone"
-                className="text-lg font-semibold text-gray-700 block"
+                className="text-gray-700 font-medium"
               >
-                ফোন নাম্বার দিন <Required />
-              </label>
+                ফোন নম্বর <Required />
+              </Label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
+                <Input
                   id="login-phone"
                   type="tel"
-                  value={phone as string}
-                  onChange={handlePhoneChange}
-                  placeholder="01XXXXXXXXX"
-                  className="w-full pl-12 pr-4 h-14 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-lg"
-                  //   disabled={isSendingOTP}
+                  placeholder="আপনার ফোন নম্বর লিখুন"
+                  {...register("phone")}
+                  className="pl-10 h-12 rounded-xl border-gray-200 focus:border-teal-500 focus:ring-teal-500"
                 />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                  <Phone size={16} />
+                </span>
               </div>
               {errors.phone && (
-                <p className="text-sm text-red-600 flex items-center gap-1">
-                  <span>⚠️</span> {errors.phone?.message as string}
+                <p className="text-red-500 text-sm">
+                  {errors.phone.message as string}
                 </p>
               )}
-              <p className="text-xs text-gray-500 mt-2">
-                নোট: +88 লিখতে হবে না, সরাসরি 01 দিয়ে শুরু করুন
-              </p>
             </div>
 
             <button
               type="submit"
               //   disabled={isSendingOTP || !phone}
-              className="w-full h-14 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full h-14 bg-primary hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {/* {isSendingOTP ? (
                 <>
@@ -185,13 +188,13 @@ const Registration = () => {
           </form>
         )}
 
-        {/* {step === 2 && (
+        {step === 2 && (
           <OTPInput
             phone={phone as string}
             onVerify={handleVerifyOtp}
             isVerifying
           />
-        )} */}
+        )}
         {step === 3 && (
           <form onSubmit={handleSubmit(onSignupSubmit)} className="space-y-4">
             <div className="space-y-2">
@@ -309,7 +312,7 @@ const Registration = () => {
       </div>
       <p className="text-gray-400 mt-3.5">
         আগেই অ্যাকাউন্ট আছে?
-        <span className="text-green">লগইন করুন</span>
+        <span className="text-green"> লগইন করুন</span>
       </p>
     </div>
   );
