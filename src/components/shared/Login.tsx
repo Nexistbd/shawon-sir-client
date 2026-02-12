@@ -7,7 +7,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Eye, EyeOff, Info, Lock, Phone, X } from "lucide-react";
@@ -82,10 +82,7 @@ export default function Login() {
             <TabsContent value="login" className="mt-0 pb-6">
               <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 mb-6 relative">
                 <div className="flex gap-3">
-                  <Info
-                    className="text-teal-500 flex-shrink-0 mt-0.5"
-                    size={20}
-                  />
+                  <Info className="text-teal-500 shrink-0 mt-0.5" size={20} />
                   <p className="text-sm text-teal-800 leading-relaxed">
                     ফোন নাম্বার এবং পাসওয়ার্ড দিয়ে লগইন করুন
                   </p>

@@ -10,4 +10,6 @@ export default {
     process.env.NEXT_PUBLIC_NODE_ENV == "development"
       ? process.env.NEXT_PUBLIC_FRONTEND_URL
       : process.env.NEXT_PUBLIC_FRONTEND_URL_PRODUCTION,
+
+  next_auth_secret:process.env.NEXTAUTH_SECRET
 };
