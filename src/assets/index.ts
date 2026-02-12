@@ -4,8 +4,12 @@ import rectImg from "@/assets/rectangle.png";
 import fileIcon from "@/assets/file.svg";
 import pcIcon from "@/assets/pc.svg";
 import manIcon from "@/assets/man.svg";
+import logoSvg from "@/assets/logo.svg";
 
 export default {
+  logo: {
+    logoSvg: logoSvg,
+  },
   shape: {
     grid: gridSvg,
   },
