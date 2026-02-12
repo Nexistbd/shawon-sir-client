@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +17,8 @@ import Image from "next/image";
 import assets from "@/assets";
 import LoadingButton from "./Loading";
 import Registration from "./Registration";
+// import { toast } from "sonner";
+// Using console.log for now. Install sonner or use CustomToast for production.
 
 // Validation schema for login
 const loginSchema = z.object({
@@ -29,6 +33,8 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function Login() {
   const [activeTab, setActiveTab] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -38,9 +44,30 @@ export default function Login() {
     },
   });
 
-  const onLoginSubmit = (data: LoginFormData) => {
-    console.log("Login data:", data);
-    // Handle login logic here
+  const onLoginSubmit = async (data: LoginFormData) => {
+    setIsLoading(true);
+    try {
+      const result = await signIn("credentials", {
+        phone: data.phone,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        console.error("Login failed:", result.error);
+        // toast.error("লগইন ব্যর্থ হয়েছে। আপনার ফোন নম্বর এবং পাসওয়ার্ড যাচাই করুন।");
+      } else {
+        console.log("Login successful!");
+        // toast.success("লগইন সফল হয়েছে!");
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      // toast.error("একটি ত্রুটি ঘটেছে। পরে আবার চেষ্টা করুন।");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -154,10 +181,10 @@ export default function Login() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary  hover:bg-orange-600 text-white text-lg  h-12 rounded-xl shadow-lg hover:shadow-xl transition-all font-bold "
+                  disabled={isLoading}
+                  className="w-full bg-primary hover:bg-orange-600 text-white text-lg h-12 rounded-xl shadow-lg hover:shadow-xl transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <LoadingButton />
-                  লগইন করুন
+                  {isLoading ? <LoadingButton /> : "লগইন করুন"}
                 </Button>
 
                 <div className="text-center pt-2">
