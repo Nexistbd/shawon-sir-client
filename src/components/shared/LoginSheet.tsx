@@ -6,6 +6,7 @@ import {
   ReactNode,
   useState,
   useEffect,
+  Suspense,
 } from "react";
 import { useSearchParams } from "next/navigation";
 import {
@@ -27,7 +28,8 @@ const LoginSheetContext = createContext<LoginSheetContextType | undefined>(
   undefined,
 );
 
-export function LoginSheetProvider({ children }: { children: ReactNode }) {
+// Inner component that uses useSearchParams
+function LoginSheetContent({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
 
@@ -48,7 +50,7 @@ export function LoginSheetProvider({ children }: { children: ReactNode }) {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="right" className="w-full sm:max-w-md p-0">
           <SheetHeader className="p-6 pb-0">
-            <SheetTitle>শাওন স্যারের সাথে শুরু করুন </SheetTitle>
+            <SheetTitle>লগইন</SheetTitle>
           </SheetHeader>
           <div className="p-6">
             <Login />
@@ -56,6 +58,28 @@ export function LoginSheetProvider({ children }: { children: ReactNode }) {
         </SheetContent>
       </Sheet>
     </LoginSheetContext.Provider>
+  );
+}
+
+// Fallback provider for SSR (doesn't render sheet until hydrated)
+function LoginSheetFallback({ children }: { children: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openLogin = () => setIsOpen(true);
+  const closeLogin = () => setIsOpen(false);
+
+  return (
+    <LoginSheetContext.Provider value={{ isOpen, openLogin, closeLogin }}>
+      {children}
+    </LoginSheetContext.Provider>
+  );
+}
+
+export function LoginSheetProvider({ children }: { children: ReactNode }) {
+  return (
+    <Suspense fallback={<LoginSheetFallback>{children}</LoginSheetFallback>}>
+      <LoginSheetContent>{children}</LoginSheetContent>
+    </Suspense>
   );
 }
 
@@ -68,7 +92,7 @@ export function useLoginSheet() {
   return context;
 }
 
-// Login Button Component - wraps any child in a button that opens the sheet
+// Login Button Component
 interface LoginButtonProps {
   children: ReactNode;
   className?: string;
