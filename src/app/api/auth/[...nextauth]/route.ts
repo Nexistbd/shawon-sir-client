@@ -2,7 +2,7 @@ import config from "@/config";
 import DecodeJwt from "@/utils/DecodeJwt";
 
 import axios from "axios";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 interface CustomJwtPayload {
   id: string;
@@ -29,7 +29,7 @@ declare module "next-auth" {
   }
 }
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Login",
@@ -60,7 +60,6 @@ const handler = NextAuth({
 
               accessToken: tokens.accessToken,
               refreshToken: tokens.refreshToken,
-              subscriptionLastChecked: Date.now(),
             };
           } else {
             return null;
@@ -106,6 +105,8 @@ const handler = NextAuth({
     },
   },
   secret: config.next_auth_secret,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
