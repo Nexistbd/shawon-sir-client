@@ -25,6 +25,7 @@ import {
 } from "@/redux/feature/user.Api";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useLoginSheet } from "./LoginSheet";
 
 const Registration = () => {
   const [step, setStep] = useState(1);
@@ -41,7 +42,15 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
   const searchParams = useSearchParams();
+  let closeLogin: (() => void) | undefined;
+  try {
+    closeLogin = useLoginSheet().closeLogin;
+  } catch {
+    // Not in LoginSheetProvider, ignore
+  }
+
   const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const [sendOtp, { isLoading: isSendingOTP }] = useSendOTPMutation();
   const [signUp, { isLoading: isSigning }] = useSignUpMutation();
 
@@ -124,6 +133,9 @@ const Registration = () => {
           redirect: false,
           callbackUrl,
         });
+        if (closeLogin) {
+          closeLogin();
+        }
         successTotast();
         reset();
         setPhone("");
