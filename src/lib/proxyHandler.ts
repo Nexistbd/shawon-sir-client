@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import api from "./axioxConfig";
 
-async function handleRequest(
+async function handleProxyRequest(
   method: string,
   request: NextRequest,
   params: { path: string[] },
@@ -34,4 +34,4 @@ async function handleRequest(
   }
 }
 
-export default handleRequest;
+export default handleProxyRequest;

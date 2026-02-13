@@ -1,4 +1,5 @@
 import config from "@/config";
+import { refreshAccessToken } from "@/lib/refreshToken";
 import DecodeJwt from "@/utils/DecodeJwt";
 
 import axios from "axios";
@@ -88,8 +89,11 @@ export const authOptions: NextAuthOptions = {
         token.role = user.role;
         token.name = user.name ?? undefined;
       }
+      if (Date.now() < (token.accessTokenExpires as number)) {
+        return token;
+      }
 
-      return token;
+      return await refreshAccessToken(token);
     },
 
     async session({ session, token }) {

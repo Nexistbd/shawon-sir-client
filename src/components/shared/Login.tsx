@@ -80,6 +80,9 @@ export default function Login() {
         const newSearchParams = new URLSearchParams();
         newSearchParams.set("callbackUrl", callbackUrl);
         router.push(`${pathname}?${newSearchParams.toString()}`);
+        const targetUrl = callbackUrl || pathname;
+
+        router.replace(targetUrl);
         router.refresh();
       }
     } catch (error) {
