@@ -1,6 +1,4 @@
-import { baseApi } from "../api/baseApi";
-
-
+import { baseApi } from "@/api/baseApi";
 
 const verifyCupponApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
