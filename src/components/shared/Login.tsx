@@ -17,8 +17,9 @@ import { Eye, EyeOff, Info, Lock, Phone, X } from "lucide-react";
 import LoadingButton from "./Loading";
 import Registration from "./Registration";
 import { useLoginSheet } from "./LoginSheet";
-import { errorTotast } from "@/utils/CustomToast";
+import { errorTotast, successTotast } from "@/utils/CustomToast";
 import { TError } from "@/types";
+
 
 const loginSchema = z.object({
   phone: z.string().min(11, "ফোন নম্বর অবশ্যই ১১ সংখ্যার হতে হবে"),
@@ -39,7 +40,7 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-
+  
   // Get closeLogin from context if available
   let closeLogin: (() => void) | undefined;
   try {
@@ -58,6 +59,7 @@ export default function Login() {
     },
   });
 
+
   const onLoginSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
@@ -69,13 +71,14 @@ export default function Login() {
       });
 
       if (result?.error) {
-        console.error("Login failed:", result.error);
-        // toast.error("লগইন ব্যর্থ হয়েছে। আপনার ফোন নম্বর এবং পাসওয়ার্ড যাচাই করুন।");
+        console.log(result.error, "err");
+        errorTotast(result.error as any);
       } else {
         // Close the sheet if used in a modal
         if (closeLogin) {
           closeLogin();
         }
+        successTotast("Log in successful");
         // Redirect to the callback URL after successful login
         // Clear the login query param to prevent auto-opening on refresh
         const newSearchParams = new URLSearchParams();

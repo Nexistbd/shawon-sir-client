@@ -1,17 +1,21 @@
 "use client";
 import assets from "@/assets";
 import { navRoutes } from "@/lib/data";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LoginButton } from "./LoginSheet";
 import { ModeToggle } from "../ui/toogle-mood";
+import { useSession } from "next-auth/react";
+import { Suspense } from "react";
+import { Button } from "../ui/button";
+import { useLogout } from "@/hooks/useLogout";
 
 const Header = () => {
-  const { theme } = useTheme();
-  console.log(theme, "them");
   const pathname = usePathname();
+  const { status } = useSession();
+  const { handleLogout } = useLogout();
+
   return (
     <div className="w-full bg-white dark:bg-[#022A1C] shadow-[5px_1px_10px_1px_rgba(0,0,0,0.3)] fixed top-0 left-0 right-0 z-30  px-3">
       <div className="h-16 flex items-center justify-between w-full max-w-7xl mx-auto container">
@@ -45,9 +49,17 @@ const Header = () => {
         {/*  */}
         <div className="flex items-center gap-2.5">
           <ModeToggle />
-          <LoginButton className="border-2 bg-primary border-primary text-white flex items-center gap-1.5 px-8 py-1.5 rounded-[10px] font-bold hover:bg-white hover:text-primary transition-all">
-            <p>লগিন/সাইনআপ</p>
-          </LoginButton>
+          <Suspense>
+            {status && status === "authenticated" ? (
+              <Button onClick={handleLogout} variant={"destructive"}>
+                Logout
+              </Button>
+            ) : (
+              <LoginButton className="border-2 bg-primary border-primary text-white flex items-center gap-1.5 px-8 py-1.5 rounded-[10px] font-bold hover:bg-white hover:text-primary transition-all">
+                <p>লগিন/সাইনআপ</p>
+              </LoginButton>
+            )}
+          </Suspense>
         </div>
       </div>
     </div>
