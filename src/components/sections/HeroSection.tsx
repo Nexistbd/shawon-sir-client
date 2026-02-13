@@ -60,7 +60,7 @@ export const HeroSection = () => {
             <Image
               src={heroImage}
               alt="Hero"
-              className="w-full rounded-lg h-full max-h-[600px]"
+              className="w-full rounded-lg h-full max-h-150"
               width={600}
               height={620}
             />
