@@ -10,10 +10,21 @@ import { formatPhoneNumber, validatePassword } from "./validation";
 import LoadingButton from "./Loading";
 import OTPInput from "./OTPInput";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { CurrentPhone, setPhoneNumber } from "@/redux/feature/auth/authSliece";
-import { errorTotast, showToast } from "@/utils/CustomToast";
+import {
+  CurrentPhone,
+  removePhone,
+  setPhoneNumber,
+} from "@/redux/feature/auth/authSliece";
+import { errorTotast, showToast, successTotast } from "@/utils/CustomToast";
 import { logger } from "@/utils/logger";
 import { TError } from "@/types";
+import {
+  useSendOTPMutation,
+  useSignUpMutation,
+  useVerifyOTPMutation,
+} from "@/redux/feature/user.Api";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const Registration = () => {
   const [step, setStep] = useState(1);
@@ -29,6 +40,12 @@ const Registration = () => {
     setError,
     formState: { errors },
   } = useForm();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const [sendOtp, { isLoading: isSendingOTP }] = useSendOTPMutation();
+  const [signUp, { isLoading: isSigning }] = useSignUpMutation();
+
+  const [verifyOtp, { isLoading: isVerifying }] = useVerifyOTPMutation();
 
   const handlePhoneChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
@@ -51,16 +68,16 @@ const Registration = () => {
 
       dispatch(setPhoneNumber(phone));
 
-      //   const res = await sendOtp(phone).unwrap();
+      const res = await sendOtp({ phone }).unwrap();
 
-      //   // success case
-      //   if (res.success) {
-      //     showToast(res.message || "OTP sent successfully", "success");
-      //     setStep(2);
-      //   } else if (res.err.statusCode === 208) {
-      //     showToast(res.message || "Phone Alredy Exist", "error");
-      //     return;
-      //   }
+      // success case
+      if (res.success) {
+        showToast(res.message || "OTP sent successfully", "success");
+        setStep(2);
+      } else if (res.err.statusCode === 208) {
+        showToast(res.message || "Phone Alredy Exist", "error");
+        return;
+      }
     } catch (err) {
       const error = err as TError;
       logger.log(error, "as error");
@@ -71,11 +88,11 @@ const Registration = () => {
 
   const handleVerifyOtp = async (code: string) => {
     try {
-      //   const res = await verifyOtp({ phone, code }).unwrap();
-      //   if (res.success) {
-      //     showToast("Verified successfully", "success");
-      //     setStep(3);
-      //   }
+      const res = await verifyOtp({ phone, code }).unwrap();
+      if (res.success) {
+        showToast("Verified successfully", "success");
+        setStep(3);
+      }
     } catch (err) {
       errorTotast(err as TError);
     }
@@ -95,35 +112,30 @@ const Registration = () => {
         ...data,
         phone,
       };
-      const loggedData = {
-        phone,
-        password: data.password,
-      };
 
-      //   const registration = await signUp(payload).unwrap();
-      //   if (registration.success) {
-      //     const res = await login(loggedData).unwrap();
-
-      //     const user = VerifyJwt(res.data.accessToken);
-
-      //     // in redux state
-
-      //     dispatch(setUser({ user: user, token: res.data.accessToken }));
-      //     if (res.success) {
-      //       await router.push(from);
-      //     }
-      //     successTotast();
-      //     reset();
-      //     setPhone("");
-      //     dispatch(removePhone());
-      //   }
+      const registration = await signUp(payload).unwrap();
+      if (registration.success) {
+        const loggedData = {
+          phone: registration?.data?.phone,
+          password: data.password,
+        };
+        await signIn("credentials", {
+          ...loggedData,
+          redirect: false,
+          callbackUrl,
+        });
+        successTotast();
+        reset();
+        setPhone("");
+        dispatch(removePhone());
+      }
     } catch (err) {
       errorTotast(err as TError);
     }
   };
 
   return (
-    <div>
+    <div className="">
       {step === 1 && (
         <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 mb-6 relative">
           <div className="flex gap-3">
@@ -134,13 +146,13 @@ const Registration = () => {
           </div>
         </div>
       )}
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md  h-full">
+      <div className="rounded-2xl shadow-xl w-full max-w-md px-1.5  h-full">
         {step === 1 && (
           <form onSubmit={handlePhoneSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label
                 htmlFor="login-phone"
-                className="text-gray-700 font-medium"
+                className="text-gray-700  dark:text-gray-300 font-medium"
               >
                 ফোন নম্বর <Required />
               </Label>
@@ -165,10 +177,10 @@ const Registration = () => {
 
             <button
               type="submit"
-              //   disabled={isSendingOTP || !phone}
+              disabled={isSendingOTP || !phone}
               className="w-full h-14 bg-primary hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {/* {isSendingOTP ? (
+              {isSendingOTP ? (
                 <>
                   <LoadingButton />
                   অপেক্ষা করুণ...
@@ -178,11 +190,7 @@ const Registration = () => {
                   পরবর্তী
                   <ArrowRight className="h-5 w-5" />
                 </>
-              )} */}
-              <>
-                পরবর্তী
-                <ArrowRight className="h-5 w-5" />
-              </>
+              )}
             </button>
           </form>
         )}
@@ -191,7 +199,7 @@ const Registration = () => {
           <OTPInput
             phone={phone as string}
             onVerify={handleVerifyOtp}
-            isVerifying
+            isVerifying={isVerifying}
           />
         )}
         {step === 3 && (
@@ -202,7 +210,7 @@ const Registration = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="signup-phone"
-                className=" font-medium text-gray-700"
+                className=" font-medium text-gray-700 dark:text-gray-300"
               >
                 নাম <Required />
               </Label>
@@ -228,7 +236,7 @@ const Registration = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="signup-password"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 পাসওয়ার্ড <Required />
               </Label>
@@ -266,7 +274,7 @@ const Registration = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="signup-confirm-password"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 পুনরায় পাসওয়ার্ড <Required />
               </Label>
@@ -302,12 +310,10 @@ const Registration = () => {
 
             <Button
               type="submit"
-              className="w-full h-11 bg-primary hover:bg-blue-700 text-white font-medium transition-colors duration-200"
-              //   disabled={isSigning || isLoging}
+              className="w-full h-11 bg-primary hover:bg-amber-700 text-white font-medium transition-colors duration-200"
+              disabled={isSigning}
             >
-              {/* {isSigning || isLoging ? "Creating account..." : "Create Account"}
-               */}
-              অ্যাকাউন্ট খুলুন
+              {isSigning ? <LoadingButton /> : "অ্যাকাউন্ট খুলুন"}
             </Button>
           </form>
         )}

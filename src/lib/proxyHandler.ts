@@ -6,11 +6,11 @@ import api from "./axioxConfig";
 async function handleProxyRequest(
   method: string,
   request: NextRequest,
-  params: { path: string[] },
+  params: { path?: string[] },
 ) {
   const session = await getServerSession(authOptions);
   const targetPath = params.path ? params.path.join("/") : ""; // যেমন: auth/login বা users/profile
-
+  console.log(targetPath, "path=====");
   const body = method !== "GET" ? await request.json() : undefined;
   const searchParams = request.nextUrl.searchParams.toString();
   const url = `${targetPath}${searchParams ? `?${searchParams}` : ""}`;
@@ -24,6 +24,8 @@ async function handleProxyRequest(
         Authorization: session?.accessToken ? session.accessToken : "",
       },
     });
+
+   
 
     return NextResponse.json(response.data);
   } catch (error: any) {

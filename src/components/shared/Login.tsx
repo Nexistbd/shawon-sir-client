@@ -17,6 +17,8 @@ import { Eye, EyeOff, Info, Lock, Phone, X } from "lucide-react";
 import LoadingButton from "./Loading";
 import Registration from "./Registration";
 import { useLoginSheet } from "./LoginSheet";
+import { errorTotast } from "@/utils/CustomToast";
+import { TError } from "@/types";
 
 const loginSchema = z.object({
   phone: z.string().min(11, "ফোন নম্বর অবশ্যই ১১ সংখ্যার হতে হবে"),
@@ -46,8 +48,7 @@ export default function Login() {
     // Not in LoginSheetProvider, ignore
   }
 
-  // Get the callback URL from query params, default to "/dashboard"
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -86,15 +87,14 @@ export default function Login() {
         router.refresh();
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      // toast.error("একটি ত্রুটি ঘটেছে। পরে আবার চেষ্টা করুন।");
+      errorTotast(error as TError);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FCFFFD] p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#FCFFFD] dark:bg-black/60 p-4">
       <Card className="w-full max-w-md shadow-lg border-0 rounded-3xl overflow-hidden">
         <CardContent className="p-0">
           {/* Header with Logo and Close Button */}
@@ -105,16 +105,16 @@ export default function Login() {
             onValueChange={setActiveTab}
             className="w-full px-6"
           >
-            <TabsList className="w-full bg-light-green rounded-xl mb-6 h-12 p-1">
+            <TabsList className="w-full bg-light-green dark:bg-green-950 rounded-xl mb-6 h-12 p-1">
               <TabsTrigger
                 value="login"
-                className="rounded-lg h-10 flex-1 data-[state=active]:bg-green data-[state=active]:text-white data-[state=active]:shadow-md transition-all font-medium"
+                className="rounded-lg h-10 flex-1 data-[state=active]:bg-green data-[state=active]:dark:bg-primary  data-[state=active]:text-white data-[state=active]:shadow-md transition-all font-medium"
               >
                 লগইন
               </TabsTrigger>
               <TabsTrigger
                 value="register"
-                className="rounded-lg h-10 flex-1 data-[state=active]:bg-green data-[state=active]:text-white data-[state=active]:shadow-md transition-all font-medium"
+                className="rounded-lg h-10 flex-1 data-[state=active]:bg-green data-[state=active]:dark:bg-primary  data-[state=active]:text-white data-[state=active]:shadow-md transition-all font-medium"
               >
                 নতুন অ্যাকাউন্ট
               </TabsTrigger>
@@ -138,7 +138,7 @@ export default function Login() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="login-phone"
-                    className="text-gray-700 font-medium"
+                    className="text-gray-700 dark:text-gray-300 font-medium"
                   >
                     ফোন নম্বর
                   </Label>
@@ -164,7 +164,7 @@ export default function Login() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="login-password"
-                    className="text-gray-700 font-medium"
+                    className="text-gray-700 dark:text-gray-300 font-medium"
                   >
                     পাসওয়ার্ড
                   </Label>
