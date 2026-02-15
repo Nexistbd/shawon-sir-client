@@ -145,7 +145,7 @@ export const baseApi = createApi({
     "profile",
     "courses",
     "success",
-    "payments",
+    "mentors",
     "mycourses",
     "banner",
   ],

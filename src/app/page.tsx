@@ -4,10 +4,10 @@ import {
   TrendingClassesSection,
   TrendingCoursesSection,
   QuickExamSection,
-  InstructorsSection,
   BooksSection,
   TestimonialsSection,
 } from "@/components/sections";
+import MentorsSection from "@/components/sections/MentorSection";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <TrendingClassesSection />
       <TrendingCoursesSection />
       <QuickExamSection />
-      <InstructorsSection />
+      <MentorsSection />
       <BooksSection />
       <TestimonialsSection />
     </main>

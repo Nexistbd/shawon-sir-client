@@ -3,7 +3,6 @@
 import assets from "@/assets";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/heroImage.png";
 import { LoginButton } from "@/components/shared/LoginSheet";
 import { useGetAllBannersQuery } from "@/redux/feature/banner.api";
 import config from "@/config";
