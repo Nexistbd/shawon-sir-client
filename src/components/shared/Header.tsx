@@ -55,7 +55,7 @@ const Header = () => {
                 Logout
               </Button>
             ) : (
-              <LoginButton className="border-2 bg-primary border-primary text-white flex items-center gap-1.5 px-8 py-1.5 rounded-[10px] font-bold hover:bg-white hover:text-primary transition-all">
+              <LoginButton className="border-2 bg-primary border-primary text-white flex items-center gap-1.5 px-3 lg:px-8 py-1.5 rounded-[10px] font-bold hover:bg-white hover:text-primary transition-all">
                 <p>লগিন/সাইনআপ</p>
               </LoginButton>
             )}

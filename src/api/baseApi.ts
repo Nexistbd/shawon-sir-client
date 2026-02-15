@@ -116,7 +116,6 @@ const baseQueryWithReauth: BaseQueryFn<
   if (result?.error?.status === 401) {
     api.dispatch(logout());
 
-    // ব্রাউজারে থাকলে রিডাইরেক্ট করতে পারেন
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       url.searchParams.set("login", "true");
@@ -148,6 +147,6 @@ export const baseApi = createApi({
     "success",
     "payments",
     "mycourses",
-    "notice",
+    "banner",
   ],
 });

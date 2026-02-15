@@ -5,10 +5,16 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/heroImage.png";
 import { LoginButton } from "@/components/shared/LoginSheet";
+import { useGetAllBannersQuery } from "@/redux/feature/banner.api";
+import config from "@/config";
 
 // Assets
 
 export const HeroSection = () => {
+  const { data, isLoading } = useGetAllBannersQuery(undefined);
+  const bannerList = data?.data?.[0];
+  const words = bannerList?.title?.split(" ");
+
   return (
     <section className=" pt-24 md:pt-40 ">
       <div className="container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,25 +23,23 @@ export const HeroSection = () => {
           <div className="flex flex-col gap-9">
             {/* Label */}
             <div className="text-[#288b6a] dark:text-green-400 text-sm font-['Kalpurush'] uppercase">
-              আমাদের পোর্টালে স্বাগতম
+              {bannerList?.subTitle1}
             </div>
 
             {/* Main Heading */}
             <div className="space-y-4">
               <h1 className="text-[#00170f] dark:text-white text-5xl lg:text-6xl font-['Kalpurush'] font-bold">
-                সাফল্যের{" "}
+                {words?.[0]}{" "}
                 <span className="bg-linear-to-r from-[#e64460] to-[#f9d252] bg-clip-text text-transparent">
-                  নিশ্চয়তায়
-                </span>
-                <br />
-                আমরা আছি তোমার পাশে
+                  {bannerList?.gradiantText}
+                </span>{" "}
+                {words?.slice(1).join(" ")}
               </h1>
             </div>
 
             {/* Description */}
             <p className="text-[#808080] dark:text-gray-300 text-base leading-relaxed max-w-lg">
-              আমাদের অনলাইন শিক্ষা প্ল্যাটফর্মে যোগ দিন এবং আপনার স্বপ্নের
-              পাবলিক বিশ্ববিদ্যালয়ে ভর্তির জন্য প্রয়োজনীয় দক্ষতা অর্জন করুন।
+              {bannerList?.subTitle2}
             </p>
 
             {/* CTA Buttons */}
@@ -58,7 +62,7 @@ export const HeroSection = () => {
           {/* Right Image */}
           <div className="relative">
             <Image
-              src={heroImage}
+              src={`${config.file_api}/${bannerList?.photoUrl}`}
               alt="Hero"
               className="w-full rounded-lg h-full max-h-150"
               width={600}
