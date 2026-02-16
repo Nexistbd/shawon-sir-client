@@ -87,7 +87,7 @@ const ResetPassPage = () => {
 
   return (
     <div className="min-h-screen  flex justify-center  mt-24">
-      <div className=" w-full md:w-[500px]   border h-[400px] rounded-md">
+      <div className=" w-full md:w-125   border h-100 rounded-md">
         <div className="flex bg-[#003135] text-white ">
           <p className="rounded p-3 w-full font-bold">Reset Password</p>
           <OtpCountDown setIsEnable={setIsEnable} />
