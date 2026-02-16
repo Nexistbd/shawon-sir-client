@@ -1,7 +1,7 @@
 export { HeroSection } from "./HeroSection";
 export { BenefitsSection } from "./BenefitsSection";
 export { TrendingClassesSection } from "./TrendingClassesSection";
-export { TrendingCoursesSection } from "./TrendingCoursesSection";
+export { TrendingCoursesSection } from "./CoursesSection";
 export { QuickExamSection } from "./QuickExamSection";
 export { InstructorsSection } from "./MentorSection";
 export { BooksSection } from "./BooksSection";
