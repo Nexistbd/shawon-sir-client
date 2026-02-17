@@ -56,7 +56,7 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
       <div className="max-w-7xl  mx-auto px-4 md:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Course Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="order-2 lg:order-1 lg:col-span-2 space-y-6">
             {/* Course Content Header */}
             <div>
               <h2 className="text-2xl font-bold mb-2">Course Content</h2>
@@ -73,25 +73,10 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
 
               <CourseAccordian course={courseData?.data} />
             </div>
-
-            {/* Expandable Sections */}
-            {/* {courseData?.expandableSections.map((section, index) => (
-              <Card
-                key={index}
-                className="cursor-pointer hover:shadow-md transition-shadow"
-              >
-                <CardContent className="py-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold">{section.title}</h3>
-                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))} */}
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="order-1 lg:order-2 lg:col-span-1">
             <div className="sticky top-6 space-y-6">
               <Card>
                 <CardContent className="p-6 space-y-6">
@@ -113,9 +98,11 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
                         ৳{courseData?.data?.regular_fees?.toLocaleString()}
                       </span>
 
-                      <span className="text-lg text-muted-foreground line-through">
-                        ৳{courseData?.data?.discount_fees?.toLocaleString()}
-                      </span>
+                      {courseData?.data?.discount_fees > 0 && (
+                        <span className="text-lg text-muted-foreground line-through">
+                          ৳{courseData?.data?.discount_fees?.toLocaleString()}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -154,7 +141,7 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
                     size="lg"
                     className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold"
                   >
-                    নথিভুক্তি করুন
+                    এনরোল করুন
                   </Button>
                 </CardContent>
               </Card>
