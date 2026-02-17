@@ -3,6 +3,7 @@ import { TCourse } from "@/types";
 import { Clock, UserCog, Users } from "lucide-react";
 import Image from "next/image";
 import GreenBorderButton from "../shared/GreenButton";
+import Link from "next/link";
 
 interface CourseCardProps {
   course: TCourse;
@@ -68,7 +69,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => (
 
       {/* Buttons */}
       <div className="flex gap-3">
-        <GreenBorderButton title="বিস্তারিত দেখুন" />
+        <GreenBorderButton>
+          <Link href={`/courses/${course.slug}`}>বিস্তারিত দেখুন</Link>
+        </GreenBorderButton>
         <button className="flex-1 bg-[#eb6e5c] text-white py-2 rounded-lg font-bold hover:opacity-90">
           এনরোল করুন
         </button>
