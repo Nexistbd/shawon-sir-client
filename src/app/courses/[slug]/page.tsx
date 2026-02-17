@@ -27,9 +27,9 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
   const param = use(params);
   const slug = param.slug;
   const { data: courseData, isLoading } = useGetSingleCourseQuery(slug);
-  console.log(courseData, "da");
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className=" h-full bg-[#F3F4F5]">
       {/* Hero Section */}
       <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
         <Image
@@ -53,7 +53,7 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl  mx-auto px-4 md:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Course Content */}
           <div className="lg:col-span-2 space-y-6">
@@ -64,46 +64,15 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
 
             {/* Course Module Card */}
 
-            <Card>
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-3 rounded-lg">
-                    <BookOpen className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-xl mb-2">
-                      কোর্সের বিস্তারিত
-                    </CardTitle>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Course Name */}
-                <h3 className="text-lg font-semibold">
-                  {courseData?.data?.subtitle}
-                </h3>
-                <Separator />
-                {/* here implemented accordian */}
-                {/* Description */}
-                <CourseAccordian course={courseData?.data} />
-                {/* What We'll Learn */}
-                <div>
-                  <h4 className="font-semibold mb-4">আমরা কী শিখব?</h4>
-                  <div className="space-y-3">
-                    {courseData?.data?.feature?.map(
-                      (item: string, idx: number) => (
-                        <div key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
-                          <span className="text-sm text-muted-foreground">
-                            {item}
-                          </span>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div>
+              {/* Course Name */}
+              <h3 className="text-lg font-semibold">
+                {courseData?.data?.subtitle}
+              </h3>
+              <Separator />
+
+              <CourseAccordian course={courseData?.data} />
+            </div>
 
             {/* Expandable Sections */}
             {/* {courseData?.expandableSections.map((section, index) => (

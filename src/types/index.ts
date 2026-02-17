@@ -87,3 +87,20 @@ export interface TCourse {
   isPublic: boolean;
   courseConfig?: TCourseConfig;
 }
+
+//  "mentors": [
+//             {
+//                 "mentor": {
+//                     "_id": "698f45e668da28ed51f0b427",
+//                     "name": "Shawon Sir",
+//                     "subjects": [
+//                         {
+//                             "name": "English"
+//                         }
+//                     ],
+//                     "photoUrl": "1770997200468-waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer.jpg",
+//                     "education": "University of Dhaka"
+//                 },
+//                 "isDeleted": false
+//             }
+//         ],

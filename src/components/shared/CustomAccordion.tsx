@@ -29,7 +29,11 @@ const CustomAccordion: FC<TCustomAccordionProps> = ({
       defaultValue={defaultValue}
     >
       {accordionItems.map((item) => (
-        <AccordionItem key={item.value} value={item.value}>
+        <AccordionItem
+          className="my-2.5 px-3 rounded bg-white"
+          key={item.value}
+          value={item.value}
+        >
           <AccordionTrigger className="transition-all data-[state=open]:font-bold">
             {item.title}
           </AccordionTrigger>
