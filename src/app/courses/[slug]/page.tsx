@@ -104,16 +104,6 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-red-500/20" />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-yellow-400 text-black font-bold text-lg px-4 py-2">
-                        50 Days Challenge
-                      </Badge>
-                    </div>
-                    <div className="absolute bottom-4 left-4">
-                      <Badge className="bg-red-600 text-white font-bold text-xl px-4 py-2">
-                        GST B Unit Batch
-                      </Badge>
-                    </div>
                   </div>
 
                   {/* Pricing */}
@@ -133,31 +123,29 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
 
                   {/* Description */}
                   <p className="text-sm text-muted-foreground">
-                    {courseData?.data?.description}
+                    {courseData?.data?.subtitle}
                   </p>
-
-                  <Separator />
 
                   {/* Course Features */}
                   <div>
-                    <h4 className="font-semibold mb-4">Course Features</h4>
                     <div className="grid grid-cols-2 gap-4">
-                      {courseData?.features?.map((feature, idx) => {
-                        const Icon = feature;
-                        return (
-                          <div
-                            key={idx}
-                            className="flex flex-col items-center text-center gap-2"
-                          >
-                            <div className="bg-green-100 p-3 rounded-full">
-                              <Icon className="h-5 w-5 text-green-600" />
-                            </div>
-                            <span className="text-xs text-muted-foreground">
-                              {feature}
-                            </span>
-                          </div>
-                        );
-                      })}
+                      <div className="flex flex-col items-center text-center gap-2">
+                        <div className="bg-green-100 p-3 rounded-full">
+                          <Clock className="h-5 w-5 text-green-600" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">
+                          {courseData?.data?.time}
+                        </span>
+                      </div>
+                      {/*  */}
+                      <div className="flex flex-col items-center text-center gap-2">
+                        <div className="bg-green-100 p-3 rounded-full">
+                          <Users className="h-5 w-5 text-green-600" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">
+                          {courseData?.data?.totalStudent} ভর্তি হয়েছে
+                        </span>
+                      </div>
                     </div>
                   </div>
 
