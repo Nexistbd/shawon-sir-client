@@ -16,14 +16,28 @@ export default withAuth(
     // }
     if (pathname.startsWith("/api/auth")) return NextResponse.next();
 
-    // if not authenticated -> redirect to current page with login modal flag
+    // if not authenticated -> redirect to referer (or current page) with login_redirect cookie
     if (!isAuth) {
-      if (req.nextUrl.searchParams.get("login") === "true") {
-        return NextResponse.next();
+      const referer = req.headers.get("referer");
+      const origin = req.nextUrl.origin;
+      
+      let redirectUrl: URL = req.nextUrl.clone();
+
+      // If user came from another page on the same site, redirect back there
+      if (referer && referer.startsWith(origin)) {
+        redirectUrl = new URL(referer);
       }
-      const url = req.nextUrl.clone();
-      url.searchParams.set("login", "true");
-      return NextResponse.redirect(url);
+
+      // Avoid redirect loops if we are already at the target
+      if (req.url === redirectUrl.toString()) {
+         const response = NextResponse.next();
+         response.cookies.set("login_redirect", "true", { httpOnly: false }); 
+         return response;
+      }
+      
+      const response = NextResponse.redirect(redirectUrl);
+      response.cookies.set("login_redirect", "true", { httpOnly: false });
+      return response;
     }
 
     return NextResponse.next();

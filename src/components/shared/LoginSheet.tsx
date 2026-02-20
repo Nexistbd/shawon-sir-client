@@ -34,9 +34,25 @@ function LoginSheetContent({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Auto-open sheet if login=true in URL
-    if (searchParams.get("login") === "true") {
+    // Check for login_redirect cookie
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(";").shift();
+    };
+
+    const deleteCookie = (name: string) => {
+      document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    };
+
+    const loginCookie = getCookie("login_redirect");
+
+    // Auto-open sheet if login=true in URL or cookie exists
+    if (searchParams.get("login") === "true" || loginCookie === "true") {
       setIsOpen(true);
+      if (loginCookie) {
+        deleteCookie("login_redirect");
+      }
     }
   }, [searchParams]);
 
