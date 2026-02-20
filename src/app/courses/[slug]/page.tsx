@@ -28,6 +28,8 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
   const slug = param.slug;
   const { data: courseData, isLoading } = useGetSingleCourseQuery(slug);
 
+  console.log(courseData, "data");
+
   return (
     <div className=" h-full bg-[#F3F4F5]">
       {/* Hero Section */}

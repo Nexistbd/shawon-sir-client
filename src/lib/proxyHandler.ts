@@ -25,12 +25,11 @@ async function handleProxyRequest(
       },
     });
 
-   
-
     return NextResponse.json(response.data);
   } catch (error: any) {
+    console.log(error, "eror");
     return NextResponse.json(
-      error.response?.data || { message: "Internal Server Error" },
+      error.response?.data || { message: "Internal Server Error", err: error },
       { status: error.response?.status || 500 },
     );
   }

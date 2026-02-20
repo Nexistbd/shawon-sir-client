@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./feature/auth/authSliece";
+import courseCartReducer from "./feature/slice/courseSlice";
 
 import {
   persistStore,
@@ -31,7 +32,7 @@ const persistAuthReducer = persistReducer(persisConfig, authReducer);
 
 const rootReducer = combineReducers({
   auth: persistAuthReducer,
-  // cart: cartReducer,
+  courseCart: courseCartReducer,
   // answers: persistAnswerReducer, // Add answers reducer here
   [baseApi.reducerPath]: baseApi.reducer,
 });

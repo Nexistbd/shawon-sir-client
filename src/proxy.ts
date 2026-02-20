@@ -32,5 +32,5 @@ export default withAuth(
 
 export const config = {
   // Protected routes that require authentication
-  matcher: ["/dashboard/:path*", "/course/enrollment/:path*"],
+  matcher: ["/dashboard/:path*", "/courses/enroll/:path*"],
 };
