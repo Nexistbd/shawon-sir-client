@@ -1,7 +1,7 @@
-"use cient";
+"use client";
 
 import { use, useEffect, useState } from "react";
-import Image from "next/image";
+
 
 import { useSession } from "next-auth/react";
 import { validatePhone } from "@/components/shared/validation";

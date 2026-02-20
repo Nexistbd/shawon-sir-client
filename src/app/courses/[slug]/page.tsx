@@ -18,6 +18,7 @@ import Image from "next/image";
 import { use } from "react";
 import parse from "html-react-parser";
 import CourseAccordian from "@/components/features/CourseAccordian";
+import Link from "next/link";
 
 type TCourseDetailsProps = {
   params: Promise<{ slug: string }>;
@@ -27,8 +28,6 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
   const param = use(params);
   const slug = param.slug;
   const { data: courseData, isLoading } = useGetSingleCourseQuery(slug);
-
-  console.log(courseData, "data");
 
   return (
     <div className=" h-full bg-[#F3F4F5]">
@@ -139,12 +138,14 @@ const CourseDetailsPage = ({ params }: TCourseDetailsProps) => {
                   </div>
 
                   {/* Enrollment Button */}
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold"
-                  >
-                    এনরোল করুন
-                  </Button>
+                  <Link href={`/courses/enroll/${courseData?.data?._id}`}>
+                    <Button
+                      size="lg"
+                      className="w-full bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold"
+                    >
+                      এনরোল করুন
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
